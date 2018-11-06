@@ -36,4 +36,10 @@
 
 - (void)isCloudWithCall:(FlutterMethodCall *)call result:(FlutterResult)result;
 
+- (void)getLatitudeWithCall:(FlutterMethodCall *)call result:(FlutterResult)result;
+
+- (void)getLongitudeWithCall:(FlutterMethodCall *)call result:(FlutterResult)result;
+
+- (void)getCreationDateWithCall:(FlutterMethodCall *)call result:(FlutterResult)result;
+
 @end

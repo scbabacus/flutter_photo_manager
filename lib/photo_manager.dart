@@ -194,10 +194,50 @@ class PhotoManager {
     }
     return null;
   }
+
+  static Future<double> _getLatitudeWithId(String id) async {
+    // TODO: to be implemented
+    if (Platform.isAndroid) {
+      return Future.value(0.0);
+    }
+    if (Platform.isIOS) {
+      return await _channel.invokeMethod("getLatitudeWithId", id);
+    }
+
+    return Future.value(0.0);
+  }
+
+  static Future<double> _getLongitudeWithId(String id) async {
+    // TODO: to be implemented
+    if (Platform.isAndroid) {
+      return Future.value(0.0);
+    }
+    if (Platform.isIOS) {
+      return await _channel.invokeMethod("getLongitudeWithId", id);
+    }
+
+    return Future.value(0.0);
+  }
+
+  static Future<double> _getCreationDateWithId(String id) async {
+    // TODO: to be implemented
+    if (Platform.isAndroid) {
+      return Future.value(0.0);
+    }
+    if (Platform.isIOS) {
+      return await _channel.invokeMethod("getCreationDateWithId", id);
+    }
+
+    return Future.value(0.0);
+  }
 }
 
 /// image entity
 class AssetEntity {
+  Future<double> get latitude => PhotoManager._getLatitudeWithId(id);
+  Future<double> get longitude => PhotoManager._getLongitudeWithId(id);
+  Future<double> get creationDate => PhotoManager._getCreationDateWithId(id); // as unix timestamp
+
   /// in android is full path
   ///
   /// in ios is asset id

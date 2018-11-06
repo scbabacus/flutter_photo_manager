@@ -436,6 +436,37 @@
     });
 }
 
+- (void)getLatitudeWithCall:(FlutterMethodCall *)call result:(FlutterResult)result {
+    dispatch_async(_asyncQueue, ^{
+        NSString *id = call.arguments;
+        PHAsset *asset = self->_idAssetDict[id];
+        CLLocationDegrees latitude = asset.location.coordinate.latitude;
+
+        result(@(latitude));
+    });
+}
+
+- (void)getLongitudeWithCall:(FlutterMethodCall *)call result:(FlutterResult)result {
+    dispatch_async(_asyncQueue, ^{
+        NSString *id = call.arguments;
+        PHAsset *asset = self->_idAssetDict[id];
+        CLLocationDegrees longitude = asset.location.coordinate.longitude;
+
+        result(@(longitude));
+    });
+}
+
+- (void)getCreationDateWithCall:(FlutterMethodCall *)call result:(FlutterResult)result {
+    dispatch_async(_asyncQueue, ^{
+        NSString *id = call.arguments;
+        PHAsset *asset = self->_idAssetDict[id];
+        NSDate *creationDate = asset.creationDate;
+        NSTimeInterval creationDateEpochSeconds = [creationDate timeIntervalSince1970];
+
+        result(@(creationDateEpochSeconds));
+    });
+}
+
 - (void)isCloudWithCall:(FlutterMethodCall *)call result:(FlutterResult)result {
 
     NSString *imageId = call.arguments;
